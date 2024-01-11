@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class LetterScript : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class LetterScript : MonoBehaviour
     private void SetLetter(char letter)
     {
         LetterText.text = letter.ToString();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // Hier können Sie Ihre Aktionen beim Anklicken des Buchstabens durchführen
+        Debug.Log("Buchstabe wurde angeklickt: " + LetterText.text);
     }
 
     private char GetRandomAvailableLetter()
