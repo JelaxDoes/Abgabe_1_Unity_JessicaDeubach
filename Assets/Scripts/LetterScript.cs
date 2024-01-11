@@ -8,7 +8,7 @@ public class LetterScript : MonoBehaviour
 {
     private Image LetterBox;
     public bool[] letterAvailability = new bool[26];
-    private TextMeshProUGUI LetterText;
+    public TextMeshProUGUI LetterText;
 
     private void Start()
     {

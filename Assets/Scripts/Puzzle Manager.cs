@@ -31,7 +31,7 @@ public class PuzzleManager : MonoBehaviour
         // Beispiel: Legen Sie den Buchstaben 'A' auf false fest (nicht verfügbar)
         foreach (var letterBox in letterBoxes)
         {
-            letterBox.letterAvailability['Z' - 'Z'] = false;
+            letterBox.letterAvailability['A' - 'A'] = false;
         }
     }
 }
