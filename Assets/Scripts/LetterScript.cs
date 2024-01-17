@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class LetterScript : MonoBehaviour, IPointerClickHandler
 {
@@ -11,6 +12,9 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
     public bool[] letterAvailability = new bool[26];
     public bool isCorrect = false;
     public TextMeshProUGUI LetterText;
+    public AudioClip clickSound;
+    private AudioSource audioSource;
+
 
 
 
@@ -21,7 +25,15 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
     }
     private void Start()
     {
-        LetterBox = GetComponent<Image>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = clickSound;
+
+        LetterBox = GetComponentInChildren<Image>();
         LetterText = GetComponentInChildren<TextMeshProUGUI>();
 
 
@@ -29,9 +41,19 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
         SetLetter(randomLetter);
     }
 
+    public void ReloadScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        LetterScript letterScript = GetLetterScript();
+
+        audioSource.Play();
+        Debug.Log("LetterImage wurde angeklickt!");
+        LetterScript letterScript = GetLetterScript();  // irgendwie hat das bei mir nicht geklappt ich glaub ich hab irgendwas im inspector falsch mit dem
+        //eventtrigger component
         if (letterScript != null)
         {
 
@@ -43,6 +65,7 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
             else
             {
                 SetIncorrectColor();
+                ReloadScene();
             }
         }
           
@@ -90,5 +113,7 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
             
             return 'S';
         }
+
+        
     }
     }
