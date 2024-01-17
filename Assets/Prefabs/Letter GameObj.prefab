@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6230484044314190784}
   - component: {fileID: 3495104508609787178}
   - component: {fileID: 1122803621675521504}
-  - component: {fileID: 3819027414266035842}
+  - component: {fileID: 3777825685535721195}
   m_Layer: 5
   m_Name: LetterImage
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3819027414266035842
+--- !u!114 &3777825685535721195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 4
     callback:
       m_PersistentCalls:
         m_Calls:
@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterAvailability: 0001000000000000000000000000000000000000000000000000
+  isCorrect: 0
   LetterText: {fileID: 8437424774752145951}
 --- !u!1 &6241085819125481888
 GameObject:

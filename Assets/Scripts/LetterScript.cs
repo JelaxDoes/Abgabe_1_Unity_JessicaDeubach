@@ -1,16 +1,24 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class LetterScript : MonoBehaviour
+public class LetterScript : MonoBehaviour, IPointerClickHandler
 {
     private Image LetterBox;
     public bool[] letterAvailability = new bool[26];
+    public bool isCorrect = false;
     public TextMeshProUGUI LetterText;
 
+
+
+
+    public LetterScript GetLetterScript()
+    {
+        return this;
+    }
     private void Start()
     {
         LetterBox = GetComponent<Image>();
@@ -21,16 +29,45 @@ public class LetterScript : MonoBehaviour
         SetLetter(randomLetter);
     }
 
-    private void SetLetter(char letter)
-    {
-        LetterText.text = letter.ToString();
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Hier können Sie Ihre Aktionen beim Anklicken des Buchstabens durchführen
-        Debug.Log("Buchstabe wurde angeklickt: " + LetterText.text);
+        LetterScript letterScript = GetLetterScript();
+        if (letterScript != null)
+        {
+
+            if (letterScript.isCorrect)
+            {
+
+                SetCorrectColor();
+            }
+            else
+            {
+                SetIncorrectColor();
+            }
+        }
+          
+
     }
+
+        private void SetLetter(char letter)
+    {
+        LetterText.text = letter.ToString();
+        
+    }
+
+
+    private void SetCorrectColor()
+    {
+       
+        LetterBox.color = Color.green;
+    }
+
+    private void SetIncorrectColor()
+    {
+        
+        LetterBox.color = Color.red;
+    }
+
 
     private char GetRandomAvailableLetter()
     {
