@@ -33,11 +33,11 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
         }
         audioSource.clip = clickSound;
 
-        LetterBox = GetComponentInChildren<Image>();
-        LetterText = GetComponentInChildren<TextMeshProUGUI>();
+        LetterBox = GetComponentInChildren<Image>();  // hatte es sehr lange nur als GetComponent und nicht ComponentChild, deswegen bin ich ewig nicht weitergekommen
+        LetterText = GetComponentInChildren<TextMeshProUGUI>();// festlegen was der Text ist
 
 
-        char randomLetter = GetRandomAvailableLetter();
+        char randomLetter = GetRandomAvailableLetter(); // RandomLetter Funktion ansprechen
         SetLetter(randomLetter);
     }
 
@@ -50,19 +50,19 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
 
-        audioSource.Play();
-        Debug.Log("LetterImage wurde angeklickt!");
+        audioSource.Play(); // wenn angeklickt spiel sound
+        Debug.Log("LetterImage wurde angeklickt!");// wenn angeklickt debug das
         LetterScript letterScript = GetLetterScript();  // irgendwie hat das bei mir nicht geklappt ich glaub ich hab irgendwas im inspector falsch mit dem
         //eventtrigger component
         if (letterScript != null)
         {
 
-            if (letterScript.isCorrect)
+            if (letterScript.isCorrect) // wenn buchstabe correct ist ...
             {
 
                 SetCorrectColor();
             }
-            else
+            else // sonst
             {
                 SetIncorrectColor();
                 ReloadScene();
@@ -74,7 +74,7 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
 
         private void SetLetter(char letter)
     {
-        LetterText.text = letter.ToString();
+        LetterText.text = letter.ToString();  // Text
         
     }
 
@@ -82,17 +82,17 @@ public class LetterScript : MonoBehaviour, IPointerClickHandler
     private void SetCorrectColor()
     {
        
-        LetterBox.color = Color.green;
+        LetterBox.color = Color.green; // correct letter auf grün
     }
 
     private void SetIncorrectColor()
     {
         
-        LetterBox.color = Color.red;
+        LetterBox.color = Color.red; // falscher letter auf rot
     }
 
 
-    private char GetRandomAvailableLetter()
+    private char GetRandomAvailableLetter() 
     {
         
         List<char> availableLetters = new List<char>();
